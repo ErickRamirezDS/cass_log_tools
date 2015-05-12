@@ -78,7 +78,7 @@ sub printEntries() {
 
 
 # open the log for reading
-open(IN,$input_f) or die("ERROR - Unable to open file for processing\n");
+open(IN,$input_f) or die("ERROR - Usage: summarise_log_cass.pl -f <system_log>\n");
 
 #---declare variables
 my @tokens;                                 # split line into tokens
