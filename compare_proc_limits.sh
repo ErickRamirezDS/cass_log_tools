@@ -10,6 +10,23 @@
 node0=`ls | head -1`
 
 # validate we can find at least 1 process_limits file
+plfiles=$(find . -name "process_limits" -type f)
+
+#if no files found
+if [ $plfiles = "" ]
+then
+    echo "USAGE - Please run script in the nodes directory of a Diagnostics Report"
+    exit 1
+fi
+
+#get the first directory
+for plfile in $plfiles
+do
+    node0=$(dirname $plfile)
+    break
+done
+
+#get the header from the first file
 if [ -r $node0/process_limits ]
 then
     # at least 1 file is readable
@@ -30,10 +47,10 @@ do
     echo "-----------------------------------------------------------------------------------------------"
 
     # iterate through all nodes
-    for node in *
+    for node in $plfiles
     do
         printf "%15s - " $node
-        grep "$limit" $node/process_limits
+        grep "$limit" $node
     done
     echo ""
 done

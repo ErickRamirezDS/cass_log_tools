@@ -16,7 +16,7 @@ fi
 
 for node in *
 do
-    new_name=`echo $node | cut -d- -f9`
+    new_name=`echo $node | awk -F"-" '{print $(NF)}'`
     printf "Renaming [$node] to [$new_name]... "
     mv $node $new_name && printf "OK\n" || printf "Failed\n"
 done

@@ -27,7 +27,7 @@ fi
 grep "large row" $system_log | while read line
 do
     # extract the row size
-    row_size=`echo $line | awk '{print $12}' | sed -e 's/(//'`
+    row_size=`echo $line | awk '{print $(NF-2)}' | sed -e 's/(//'`
 
     if [ $row_size -gt $min_size_bytes ]
     then
