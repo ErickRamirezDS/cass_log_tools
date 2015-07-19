@@ -145,3 +145,7 @@ Sample output:
 #### `show_log_ranges.sh`
 
 This script is also run from the nodes directory, it will look for "system.log" files and then grab the first and last lines with the date string in them. The idea is to give the user the range the logs cover
+
+#### `parse_nodeinfo.py`
+
+A simple python script to parse the node_info.json output from OpsCenter so that the node values are all comparable side by side.
