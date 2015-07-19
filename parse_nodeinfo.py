@@ -8,10 +8,10 @@ import json
 # load the file
 data = json.loads(open("./node_info.json").read())
 
-# loop through the second level of items
+# loop through the first item only to get only one lot of items
 for items in data.values()[0]:
 
-    # loop through the first level of items
+    # loop through the first level of items (i.e. all nodes)
     for node in data:
  
         # print out the values for each node
