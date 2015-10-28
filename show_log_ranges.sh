@@ -6,7 +6,7 @@
 #
 
 # Enter your date string here
-searchStr="2015-"
+searchStr="2015-[0-9]*-[0-9]*.[0-9]*:[0-9]*:[0-9]*,[0-9]*"
 
 function checkForFiles {
     # validate we can find at least 1 file
@@ -28,7 +28,7 @@ function checkForFiles {
 }
 
 # Check for the files first
-checkForFiles system.log
+checkForFiles "*system.log*"
 
 # validate we can find at least 1 file
 if [ -r $node0 ]
@@ -43,7 +43,7 @@ fi
 # iterate through all logs
 for logfile in $files
 do
-    grep -H $searchStr $logfile | head -1 | awk '{print $1,"Start",$4, $5}'
-    grep -H $searchStr $logfile | tail -1 | awk '{print $1, "End",$4, $5}'
+    grep -Ho $searchStr $logfile | head -1 
+    grep -Ho $searchStr $logfile | tail -1
     echo ""
 done
