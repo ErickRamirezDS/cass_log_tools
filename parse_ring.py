@@ -4,21 +4,22 @@
 import os
 import sys
 import re
+
+# Check arguments
+# (note 2 includes arg 0 which is this script!)
+if len(sys.argv) != 2:
+    print "\n***",sys.argv[0], "***\n"
+    print 'Incorrect number of arguments, please run script as follows:'
+    print '\n\n'+str(sys.argv[0])+' <nodetool ring output file>'
+    sys.exit(0)
+
+# Setup variables etc
 ring=open (sys.argv[1], 'r')
 ips = {}
 tokens = {}
 totals = {}
 glb = globals()
 token_list = []
-
-# open file for writing
-def writeToFile(file,lines):
-    with open (file, 'w') as expfile:
-        for line in lines:
-            print line
-            expfile.write(str(line))
-    expfile.close
-
 pattern = "(^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})"
 
 # create the lists first
