@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # parses the node_info.json file
 # so the values for each node are
 # displayed side by side

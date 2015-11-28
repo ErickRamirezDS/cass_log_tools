@@ -20,10 +20,10 @@ else
 fi
 
 # obtain the unique list of hours where there's a match in the log
-grep "$query_string" $system_log | awk '{print $3, $4}' | cut -d: -f1 | sort -u | while read hour
+grep -a "$query_string" $system_log | awk '{print $3, $4}' | cut -d: -f1 | sort -u | while read hour
 do
     # count number of occurences of query_string for given hour
-    count=`grep "$query_string" $system_log | grep -c "$hour:"`
+    count=`grep -a "$query_string" $system_log | grep -c "$hour:"`
 
     # print the result
     echo "$hour:00 - $count"
