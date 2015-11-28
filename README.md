@@ -149,3 +149,11 @@ This script is also run from the nodes directory, it will look for "system.log" 
 #### `parse_nodeinfo.py`
 
 A simple python script to parse the node_info.json output from OpsCenter so that the node values are all comparable side by side.
+
+#### `parse_ring.py`
+
+A simple python script to parse the nodetool ring output in and calculate the diff ranges for vnodes.
+
+Useage:
+
+`./parse_ring.py ./path/to/nodetool/ring`
