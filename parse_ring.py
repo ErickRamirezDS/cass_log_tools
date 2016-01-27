@@ -32,7 +32,7 @@ for line in ring:
     if matched:
         words = line.split() # split the line into words
         ipaddr = words[0] # select 1st item (node ip)
-        token = words[7] # select last item (token)
+        token = words[len(words) - 1] # select last item (token)
         ips[ipaddr]="node" # create dictionary of IPs
         tokens[token] = ipaddr # create a dictionary of tokens with associated ips
 
