@@ -1,4 +1,4 @@
-#!/bin/sh
+!/bin/sh
 #
 # Lists start and end of each log file
 #
