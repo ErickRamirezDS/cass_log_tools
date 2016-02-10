@@ -1,4 +1,4 @@
-!/bin/sh
+!/bin/bash
 #
 # Lists start and end of each log file
 #
@@ -6,7 +6,7 @@
 #
 
 # Enter your date string here
-searchStr="2015-[0-9]*-[0-9]*.[0-9]*:[0-9]*:[0-9]*,[0-9]*"
+searchStr="2016-[0-9]*-[0-9]*.[0-9]*:[0-9]*:[0-9]*,[0-9]*"
 
 function checkForFiles {
     # validate we can find at least 1 file

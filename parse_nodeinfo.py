@@ -5,9 +5,26 @@
 
 import os
 import json
+import re
+import sys
 
-# load the file
-data = json.loads(open("./node_info.json").read())
+# Setup variables etc
+path = '.'
+name = 'node_info.json'
+
+# Use os.walk to find all the directories under the path
+for dirname, dirnames, filenames in os.walk(path):
+    for file in filenames:
+        matched = re.match(name, file, re.M)
+        if matched:
+            # load the file
+            print dirname+'/'+file
+            data = json.loads(open(dirname+'/'+file).read())
+            break
+
+if not matched:
+    print '\nUnable to find file named ' + name 
+    sys.exit(0)
 
 # loop through the first item only to get only one lot of items
 for items in data.values()[0]:
