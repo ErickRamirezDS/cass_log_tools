@@ -45,6 +45,9 @@ def findAndParse(name):
             # print out the values for each node
             print "node: ", node, items, data[node][items]
 
+        # Add seperator for cleaner output 
+        print ''
+
 # Add your files in here you need to parse
 # Comment out the ones you dont want
 findAndParse('os-info.json')
