@@ -1,7 +1,10 @@
 #!/usr/bin/python
-# parses the a given json file
-# so the values for each node are
-# displayed side by side
+# This script can be used to parse most
+# json files in the diagnostics output.
+#
+# Its useful if you wanted to compare settings or values
+# across several nodes at a time to make it a bit easier
+# then looking through multiple json files 
 
 import os
 import json
@@ -64,8 +67,5 @@ def findAndParse(name):
         # Add seperator for cleaner output 
         print ''
 
-# Add your files in here you need to parse
-# Comment out the ones you dont want
+# Call the function with the given file
 findAndParse(file_to_parse)
-
-
