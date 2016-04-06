@@ -6,7 +6,7 @@ import sys
 import re
 
 # Setup variables etc
-name='cfstats'
+name='.*cfstats'
 files = [ ]
 directories = [ ]
 path = '.'
@@ -42,6 +42,10 @@ for dir in directories:
             if values[0]=='Keyspace': # if its a keyspace line, get the name of the new keyspace
                 keyspace=values[1]
                 table=''
+                attribute=''
+                value=''
+            elif values[0]=='Column Family': # if its a table line, get the name of the new table
+                table=values[1]
                 attribute=''
                 value=''
             elif values[0]=='Table': # if its a table line, get the name of the new table
