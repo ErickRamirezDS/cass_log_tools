@@ -11,7 +11,7 @@ giga_byte=$(( 1024 * 1024 * 1024 ))
 wide_threshold_size=$giga_byte
 
 # validate input file
-if [ "$1" == "" ]
+if [ "$1" = "" ]
 then
     echo "ERROR - Usage: `basename $0` <cfstats_output_file>"
     exit 1
