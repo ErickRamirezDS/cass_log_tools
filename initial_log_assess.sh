@@ -7,7 +7,7 @@
 #
 
 #---validate arguments
-if [ "$1" == "" ]
+if [ "$1" = "" ]
 then
     echo "ERROR - Usage: `basename $0` <system_log>"
     exit 1
