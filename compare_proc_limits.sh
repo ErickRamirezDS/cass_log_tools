@@ -33,7 +33,7 @@ do
     for node in *
     do
         printf "%15s - " $node
-        grep "$limit" $node/process_limits 2> /dev/null
+        grep "$limit" $node/process_limits 2> /dev/null || echo ""
     done
     echo ""
 done
