@@ -4,6 +4,7 @@
 # for easy comparison.
 #
 # Author Erick Ramirez, 2015 Jul 02
+# Updated 2016 Apr 14, Erick Ramirez - ignore errors when grepping non-existent limits file
 #
 
 # assume we are in the "nodes" directory
@@ -23,7 +24,6 @@ fi
 grep -v ^Limit $node0/process_limits | while read line
 do
     limit=`echo "$line" | sed -e 's/  .*$//'`
-#echo "DEBUG >>>>> limit=[$limit]"
 
     # display header
     echo "Node IP         - $header"
@@ -33,7 +33,7 @@ do
     for node in *
     do
         printf "%15s - " $node
-        grep "$limit" $node/process_limits
+        grep "$limit" $node/process_limits 2> /dev/null
     done
     echo ""
 done
