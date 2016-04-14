@@ -4,6 +4,7 @@
 # for easy comparison.
 #
 # Author Erick Ramirez, 2015 Jul 02
+# Updated 2016 Apr 14, Erick Ramirez - ignore errors when grepping non-existent yaml
 #
 
 # assume we are in the "nodes" directory
@@ -28,7 +29,7 @@ do
     for node in *
     do
         printf "%15s - " $node
-        grep "^${property}:" $node/conf/cassandra/cassandra.yaml
+        grep "^${property}:" $node/conf/cassandra/cassandra.yaml 2> /dev/null
 
         # if property was not found, just print the property name
         [ $? -ne 0 ] && echo "[$property]"
