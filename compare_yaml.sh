@@ -5,6 +5,7 @@
 #
 # Author Erick Ramirez, 2015 Jul 02
 # Updated 2016 Apr 14, Erick Ramirez - ignore errors when grepping non-existent yaml
+# Updated 2016 Apr 19, Erick Ramirez - ignore lines with a hash (#)
 #
 
 # assume we are in the "nodes" directory
@@ -21,7 +22,7 @@ else
 fi
 
 # get list of properties
-egrep -v "^$|^#" $node0/conf/cassandra/cassandra.yaml | grep : | while read line
+egrep -v "^$|#" $node0/conf/cassandra/cassandra.yaml | grep : | while read line
 do
     property=`echo "$line" | cut -d: -f1`
 
@@ -29,7 +30,7 @@ do
     for node in *
     do
         printf "%15s - " $node
-        grep "^${property}:" $node/conf/cassandra/cassandra.yaml 2> /dev/null
+        grep "${property}:" $node/conf/cassandra/cassandra.yaml 2> /dev/null | head -1 | grep -v "#"
 
         # if property was not found, just print the property name
         [ $? -ne 0 ] && echo "[$property]"
