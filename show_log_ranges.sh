@@ -43,7 +43,7 @@ fi
 # iterate through all logs
 for logfile in $files
 do
-    grep -Ho $searchStr $logfile | head -1 
-    grep -Ho $searchStr $logfile | tail -1
+    grep -Ho $searchStr $logfile | head -1 | awk '{print "START: "$0}'
+    grep -Ho $searchStr $logfile | tail -1 | awk '{print "END  : "$0}'
     echo ""
 done
