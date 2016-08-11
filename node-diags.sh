@@ -1,13 +1,23 @@
 #!/bin/bash
 #
-# The xargs removes any leading / training spaces
+# Alter the dirs below to suit your install
+# (The xargs removes any leading / training spaces)
 
 HOST=$(hostname -I | xargs)
+CONFIG=/etc/dse
+LOG=/var/log/cassandra
 
 # Grab logs etc
 
-cp /var/log/cassandra/system.log ./$HOST-system.log
-cp /var/log/cassandra/output.log ./$HOST-output.log
+cp $LOG/system.log ./$HOST-system.log
+cp $LOG/output.log ./$HOST-output.log
+
+# Grab config etc
+
+for CONFFILE in $(find $CONFIG -type f)
+do
+    cp $CONFFILE ./$HOST-$(basename $CONFFILE)
+done
 
 # Grab nodetool commands
 
