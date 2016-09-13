@@ -11,15 +11,19 @@ import sys
 # Setup variables etc
 path = '.'
 name = 'node_info.json'
+found = False
 
 # Use os.walk to find all the directories under the path
 for dirname, dirnames, filenames in os.walk(path):
+    if found:
+        break
     for file in filenames:
         matched = re.match(name, file, re.M)
         if matched:
             # load the file
             print dirname+'/'+file
             data = json.loads(open(dirname+'/'+file).read())
+            found = True
             break
 
 if not matched:
