@@ -1,5 +1,5 @@
 ## Description
-Simple scripts for working with Apache Cassandra logs.
+Simple scripts for working with Apache Cassandra logs and / or OpsCenter diagnostic outputs
 
 ## Overview
 
