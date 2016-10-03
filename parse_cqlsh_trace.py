@@ -28,7 +28,7 @@ raw_results = [ ]
 current_file = open (file_to_parse, 'r')
 
 # check for patterns
-pattern1 = '.*Execute CQL3 query.*'
+pattern1 = '.*xecute.*query.*'
 pattern2 = '.*Request complete.*'
 
 # parse file
