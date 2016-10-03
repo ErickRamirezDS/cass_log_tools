@@ -19,8 +19,8 @@ for myfile in $(find $path -maxdepth 1 -name "$mysearch")
 do
     mints=$(sstablemetadata $myfile | grep "Minimum timestamp:")
     maxts=$(sstablemetadata $myfile | grep "Maximum timestamp:")
-    mintsnorm=$(echo $mints | awk '{print substr($3,0,length($3)-5)}')
-    maxtsnorm=$(echo $maxts | awk '{print substr($3,0,length($3)-5)}')
+    mintsnorm=$(echo $mints | awk '{print substr($3,0,length($3)-6)}')
+    maxtsnorm=$(echo $maxts | awk '{print substr($3,0,length($3)-6)}')
     mindate=$(date -d @$mintsnorm)
     maxdate=$(date -d @$maxtsnorm)
     echo -e "$myfile\t$mindate\t$maxdate"
