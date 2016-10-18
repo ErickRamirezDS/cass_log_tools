@@ -6,6 +6,8 @@
 #
 
 
+logs=*/logs/cassandra/output.log
+#logs=*/logs/cassandra/system.log
 
 # validate script is run in nodes/ directory
 this_pwd=`pwd`
@@ -18,31 +20,35 @@ then
 fi
 
 echo "===== DSE version ====="
-grep "DSE version" */logs/cassandra/output.log 2> /dev/null
+grep "DSE version" $logs 2> /dev/null
 echo ""
 
 echo "===== Cassandra version ====="
-grep "Cassandra version" */logs/cassandra/output.log 2> /dev/null
+grep "Cassandra version" $logs 2> /dev/null
 echo ""
 
 echo "===== JNA ====="
-grep "JNA" */logs/cassandra/output.log 2> /dev/null
+grep "JNA" $logs 2> /dev/null
 echo ""
 
 echo "===== Heap size ====="
-grep "Heap size" */logs/cassandra/output.log 2> /dev/null
+grep "Heap size" $logs 2> /dev/null
 echo ""
 
 echo "===== Java version ====="
-grep "JVM vendor" */logs/cassandra/output.log 2> /dev/null
+grep "JVM vendor" $logs 2> /dev/null
 echo ""
 
 echo "===== Workload ====="
-grep "etting my workload" */logs/cassandra/output.log 2> /dev/null
+grep "etting my workload" $logs 2> /dev/null
 echo ""
 
 echo "===== Snitch ====="
-grep "Snitch" */logs/cassandra/output.log 2> /dev/null | grep Initialized
+grep "Snitch" $logs 2> /dev/null | grep Initialized
+echo ""
+
+echo "===== Topology ====="
+grep "cassandra-topology.properties" $logs 2> /dev/null
 echo ""
 
 echo "NOTE - For the output to be readable, run the rename_node_dirs.sh script."
