@@ -30,6 +30,7 @@ nodetool tpstats > ./$HOST-nodetool_tpstats.out
 nodetool compactionstats > ./$HOST-nodetool_compactionstats.out
 nodetool netstats > ./$HOST-nodetool_netstats.out
 nodetool ring > ./$HOST-nodetool_ring.out
+nodetool proxyhistograms > ./$HOST-nodetool_proxyhistograms.out
 dsetool ring > ./$HOST-dsetool_ring.out
 java -version 2> ./$HOST-java_version.out # always writes to stderr
 df -h > ./$HOST-df_h.out
