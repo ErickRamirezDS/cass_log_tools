@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 #
 # Lists start and end of each log file
 #
@@ -36,7 +36,7 @@ then
     # at least 1 file is readable
     echo "===== `basename $0` ====="
 else
-    echo "USAGE - Please run script in the nodes directory of a Diagnostics Report"
+    echo "Unable to find any files named $node0"
     exit 1
 fi
 
