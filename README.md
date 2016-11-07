@@ -145,3 +145,8 @@ Sample output:
 #### `show_log_ranges.sh`
 
 This script is also run from the nodes directory, it will look for "system.log" files and then grab the first and last lines with the date string in them. The idea is to give the user the range the logs cover
+
+#### `nodeuptime`
+This script takes input from `nodetool info` and prints the nodes uptime in a more 'friendly' format . 
+Useful to see how long has been up when looking at other nodetool commands.
+
