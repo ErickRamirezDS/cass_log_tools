@@ -27,7 +27,7 @@ then
 fi
 
 # read contents of cfstats output
-while read line
+egrep "Keyspace: |Table: |Compacted partition maximum bytes" $cfstats | while read line
 do
     # parse the line
     attribute=${line%:*}
@@ -53,4 +53,4 @@ do
             fi
             ;;
     esac
-done < $cfstats
+done
