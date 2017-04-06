@@ -23,7 +23,7 @@ do
     echo "===== $file ====="
     for node in *
     do
-        echo "$node - `cat $node/$file 2> /dev/null`"
+        echo "$node \t- `sed ':a;N;$!ba;s/\n/ /g' $node/$file 2> /dev/null`"
     done
     echo ""
 done
