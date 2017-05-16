@@ -4,34 +4,15 @@
 # for easy comparison.
 #
 # Author Erick Ramirez, 2015 Jul 02
+# Updated 2016 Apr 14, Erick Ramirez - ignore errors when grepping non-existent yaml
+# Updated 2016 Apr 19, Erick Ramirez - ignore lines with a hash (#)
 #
 
-# Added function to search for files using
-# find command.
-function checkForFiles {
-    # validate we can find at least 1 file
-    files=$(find . -name "$1" -type f)
-
-    # check if no files found
-    if [ -z "$files" ]
-    then
-        echo "Couldn't find any files named $1 from here. Exiting"
-        exit 1
-    fi
-
-    # get the first directory
-    for file in $files
-    do
-        node0=$file
-        break
-    done
-}
-
-# Check for the files first
-checkForFiles cassandra.yaml
+# assume we are in the "nodes" directory
+node0=`ls | head -1`
 
 # validate we can find at least 1 cassandra.yaml
-if [ -r $node0 ]
+if [ -r $node0/conf/cassandra/cassandra.yaml ]
 then
     # at least 1 file is readable
     echo "===== `basename $0` ====="
@@ -41,15 +22,15 @@ else
 fi
 
 # get list of properties
-egrep -v "^$|^#" $node0 | grep : | while read line
+egrep -v "^$|#" $node0/conf/cassandra/cassandra.yaml | grep : | while read line
 do
     property=`echo "$line" | cut -d: -f1`
 
     # iterate through all nodes
-    for node in $files
+    for node in *
     do
         printf "%15s - " $node
-        grep "^${property}:" $node
+        grep "${property}:" $node/conf/cassandra/cassandra.yaml 2> /dev/null | head -1 | grep -v "#"
 
         # if property was not found, just print the property name
         [ $? -ne 0 ] && echo "[$property]"

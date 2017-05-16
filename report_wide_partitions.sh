@@ -11,7 +11,7 @@ giga_byte=$(( 1024 * 1024 * 1024 ))
 wide_threshold_size=$giga_byte
 
 # validate input file
-if [ "$1" == "" ]
+if [ "$1" = "" ]
 then
     echo "ERROR - Usage: `basename $0` <cfstats_output_file>"
     exit 1
@@ -27,7 +27,7 @@ then
 fi
 
 # read contents of cfstats output
-while read line
+egrep "Keyspace: |Table: |Compacted partition maximum bytes" $cfstats | while read line
 do
     # parse the line
     attribute=${line%:*}
@@ -53,4 +53,4 @@ do
             fi
             ;;
     esac
-done < $cfstats
+done
