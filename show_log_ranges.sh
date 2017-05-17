@@ -4,9 +4,11 @@
 #
 # Author Mark Curtis, 2015 Jul 08
 #
+# Changes:
+# Ian Ilsley : 2017 May 17 :  changed searchStr to not hard code year.
 
-# Enter your date string here
-searchStr="2016-[0-9]*-[0-9]*.[0-9]*:[0-9]*:[0-9]*,[0-9]*"
+# searchStr is the date-time in the format YYYY-MM-DD HH:MM:SS,SSS
+searchStr="[0-9][0-9][0-9][0-9]-[0-9]*-[0-9]*.[0-9]*:[0-9]*:[0-9]*,[0-9]*"
 
 function checkForFiles {
     # validate we can find at least 1 file
