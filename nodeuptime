@@ -1,0 +1,31 @@
+!/usr/bin/awk -f
+function get_uptime(line, numfields)
+{
+  if ( line ~ /Uptime / )
+ {
+    totalSeconds = $numfields
+  ; remainingSeconds = totalSeconds % 60
+  ; hours = ( totalSeconds%86400) / 3600
+  ; days = (totalSeconds/86400)
+  ; minutes = (totalSeconds%3600)/60
+  ; printf("%d:Days %d:Hours %d:Minutes %d:Seconds\n",days,hours,minutes,remainingSeconds)
+  ; return 1
+ }
+}
+
+BEGIN {  done = 0 }
+
+{
+if ( FILENAME != prevf )
+{
+prevf=FILENAME
+done=0
+printf("----%s----\n",FILENAME)
+}
+if ( ! done )
+{
+done = get_uptime($0 , NF )
+}
+}
+
+END {}
