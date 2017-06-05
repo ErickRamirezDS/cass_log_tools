@@ -25,7 +25,7 @@ fi
 grep "$query_string" $system_log | sed -e 's/.* \([0-9]*-[0-9]*-[0-9]* [0-9]*\):.*/\1/' | sort -u | while read hour
 do
     # count number of occurences of query_string for given hour
-    count=`grep "$query_string" $system_log | grep -c "$hour:"`
+    count=`grep -a "$query_string" $system_log | grep -c "$hour:"`
 
     # print the result
     echo "$hour:00 - $count"

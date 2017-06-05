@@ -1,14 +1,20 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Lists start and end of each log file
 #
 # Author Mark Curtis, 2015 Jul 08
 #
+# Changes:
+# Ian Ilsley : 2017 May 18 :  changed searchStr to not hard code year
+#                          :  added option to pass filename to search for
+#                          :  removed redudant code
 
-# Enter your date string here
-searchStr="2015-"
+
+# searchStr is the date-time in the format YYYY-MM-DD HH:MM:SS,SSS
+searchStr="[0-9][0-9][0-9][0-9]-[0-9]*-[0-9]*.[0-9]*:[0-9]*:[0-9]*,[0-9]*"
 
 function checkForFiles {
+        
     # validate we can find at least 1 file
     files=$(find . -name "$1" -type f)
 
@@ -19,31 +25,25 @@ function checkForFiles {
         exit 1
     fi
 
-    # get the first directory
-    for file in $files
-    do
-        node0=$file
-        break
-    done
 }
 
-# Check for the files first
-checkForFiles system.log
-
-# validate we can find at least 1 file
-if [ -r $node0 ]
+#if no argument then default to system.log
+if [ -z $1 ]
 then
-    # at least 1 file is readable
-    echo "===== `basename $0` ====="
+FILE="system.log"
 else
-    echo "USAGE - Please run script in the nodes directory of a Diagnostics Report"
-    exit 1
+FILE=$1
 fi
+
+# Check for the files first
+checkForFiles "*$FILE*"
+
+echo "===== `basename $0` for $FILE ====="
 
 # iterate through all logs
 for logfile in $files
 do
-    grep -H $searchStr $logfile | head -1 | awk '{print $1,"Start",$4, $5}'
-    grep -H $searchStr $logfile | tail -1 | awk '{print $1, "End",$4, $5}'
+    grep -Ho $searchStr $logfile | head -1 | awk '{print "START: "$0}'
+    grep -Ho $searchStr $logfile | tail -1 | awk '{print "END  : "$0}'
     echo ""
 done
