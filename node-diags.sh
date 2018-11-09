@@ -28,15 +28,15 @@ done
 echo "Grab nodetool commands output"
 
 nodetool status > ./$HOST-nodetool_status.out
-#nodetool describecluster > ./$HOST-nodetool_describecluster.out
-#nodetool gossipinfo > ./$HOST-nodetool_gossipinfo.out
-#nodetool info > ./$HOST-nodetool_info.out
-#nodetool cfstats > ./$HOST-nodetool_cfstats.out
-#nodetool tpstats > ./$HOST-nodetool_tpstats.out
-#nodetool compactionstats > ./$HOST-nodetool_compactionstats.out
-#nodetool netstats > ./$HOST-nodetool_netstats.out
-#nodetool ring > ./$HOST-nodetool_ring.out
-#nodetool proxyhistograms > ./$HOST-nodetool_proxyhistograms.out
+nodetool describecluster > ./$HOST-nodetool_describecluster.out
+nodetool gossipinfo > ./$HOST-nodetool_gossipinfo.out
+nodetool info > ./$HOST-nodetool_info.out
+nodetool cfstats > ./$HOST-nodetool_cfstats.out
+nodetool tpstats > ./$HOST-nodetool_tpstats.out
+nodetool compactionstats > ./$HOST-nodetool_compactionstats.out
+nodetool netstats > ./$HOST-nodetool_netstats.out
+nodetool ring > ./$HOST-nodetool_ring.out
+nodetool proxyhistograms > ./$HOST-nodetool_proxyhistograms.out
 
 
 echo "Grab misc output from dsetool,java,df"
@@ -45,7 +45,7 @@ java -version 2> ./$HOST-java_version.out # always writes to stderr
 df -h > ./$HOST-df_h.out
 
 popd
-# Tar up the files
+echo "Tar up the files"
 tar zcf ./$HOST-files.tar.gz $TMPDIR/$HOST-*
 rm -rf $TMPDIR
 echo "${HOST}-files.tar.gz is ready "
