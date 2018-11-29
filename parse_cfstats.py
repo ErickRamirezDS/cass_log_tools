@@ -38,17 +38,17 @@ for dir in directories:
     current_file = open (dir, 'r')
     for line in current_file:
         if ": " in line: # check for the lines with attr: values
-            values = line.strip().split(': ')
-            if values[0]=='Keyspace': # if its a keyspace line, get the name of the new keyspace
+            values = line.strip().split(':')
+            if values[0][:8]=='Keyspace': # if its a keyspace line, get the name of the new keyspace
                 keyspace=values[1]
                 table=''
                 attribute=''
                 value=''
-            elif values[0]=='Column Family': # if its a table line, get the name of the new table
+            elif values[0][:13]=='Column Family': # if its a table line, get the name of the new table
                 table=values[1]
                 attribute=''
                 value=''
-            elif values[0]=='Table': # if its a table line, get the name of the new table
+            elif values[0][:5]=='Table': # if its a table line, get the name of the new table
                 table=values[1]
                 attribute=''
                 value=''
