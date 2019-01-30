@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # A shell script to check if all their repair sessions are complete.
 # The following arguments are optional, the default is cwd and system.log* 
 # The first argument is the path to the files
@@ -53,7 +53,7 @@ for FILE in $FILES
 do
   echo "parsing $FILE..."
   zgrep -e '\[repair .* new session' $FILE | cut -d\# -f2 | cut -d] -f1 >> ${NEW_SES}.tmp
-  zgrep -e '\[repair .* session completed successfully' $FILE | cut -d\# -f2 | cut -d] -f1 >> ${COMP_SUC}.tmp
+  zgrep -e '\[repair .* session completed successfully' -e '\[repair .* finished' $FILE | cut -d\# -f2 | cut -d] -f1 >> ${COMP_SUC}.tmp
 done
 
 cat ${NEW_SES}.tmp | sort | uniq > ${NEW_SES}
